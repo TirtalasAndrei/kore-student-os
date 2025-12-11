@@ -2,9 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <title>KORE | Student OS</title>
 
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+            extend: {
+            colors: {
+            "kore-crem": "#DED8CB",
+            "kore-brown": "#A97C50",
+            "kore-pink": "#C04277",
+            "kore-orange": "#FF6A3B",
+            "kore-bluered": "#250BE9, #FFD4DF"
+        },
+        fontFamily: {
+        "mono": ["Outfit"]
+        }
+        }
+        }
+        }
+
+    </script>
+</head>
+<body >
+    <nav class="p-4 border-b bg-white flex justify-between items-center">
+        <h1 class="font-bold text-xl">KORE</h1>
+        <div>
+            <a href="#" class="mr-4 text-gray-600">Login</a>
+        </div>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
 </body>
 </html>
