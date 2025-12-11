@@ -25,11 +25,13 @@
 
     </script>
 </head>
-<body >
-    <nav class="p-4 border-b bg-white flex justify-between items-center">
-        <h1 class="font-bold text-xl">KORE</h1>
-        <div>
-            <a href="#" class="mr-4 text-gray-600">Login</a>
+<body class="bg-kore-crem">
+    <nav class="w-full h-[80] bg-white border-b-2 border-black shadow-md px-8 flex justify-between items-center relative z-50">
+        <img src="{{ url_for('static', filename='images/Logo.png')}}" alt="KORE logo" class="w-[117] h-auto">
+        <div class="flex gap-16 text-xl font-mono text-black">
+            <a href="#" class="hover:text-gray-600 transition-all ">Home</a>
+            <a href="#" class="hover:text-gray-600 transition-all ">Dashboard</a>
+            <a href="#" class="hover:text-gray-600 transition-all ">Login/Sign Up</a>
         </div>
     </nav>
 
