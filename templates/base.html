@@ -28,14 +28,46 @@
     <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Text:wght@900&display=swap" rel="stylesheet">
 </head>
 <body class="bg-kore-crem">
-    <nav class="w-full h-[80] bg-white border-b-2 border-black shadow-md px-8 flex justify-between items-center relative z-50">
-        <img src="{{ url_for('static', filename='images/Logo.png')}}" alt="KORE logo" class="w-[117] h-auto">
-        <div class="flex gap-16 text-xl font-mono text-black">
-            <a href="#" class="hover:text-gray-600 transition-all ">Home</a>
-            <a href="#" class="hover:text-gray-600 transition-all ">Dashboard</a>
-            <a href="#" class="hover:text-gray-600 transition-all ">Login/Sign Up</a>
-        </div>
-    </nav>
+    <nav class="w-full h-[80px] md:h-[110px] bg-white border-b-2 border-black shadow-md px-4 md:px-8 flex justify-between items-center relative z-50">
+
+    <a href="/">
+        <img
+            src="{{ url_for('static', filename='images/Logo.png')}}"
+            alt="KORE logo"
+            class="w-[90px] md:w-[117px] h-auto"
+        >
+    </a>
+
+    <div class="hidden md:flex gap-12 text-xl font-mono font-bold text-black">
+        <a href="/" class="hover:text-gray-600 transition-all drop-shadow-[2px_2px_0_rgba(0,0,0,1)]">HOME</a>
+        <a href="/dashboard" class="hover:text-gray-600 transition-all drop-shadow-[2px_2px_0_rgba(0,0,0,1)]">DASHBOARD</a>
+        <a href="/login" class="hover:text-gray-600 transition-all drop-shadow-[2px_2px_0_rgba(0,0,0,1)]">LOGIN</a>
+    </div>
+
+    <button id="mobile-menu-btn" class="md:hidden text-black focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+    </button>
+
+</nav>
+
+<div id="mobile-menu" class="hidden md:hidden w-full bg-white border-b-2 border-black shadow-xl
+ absolute top-[80px] left-0 z-40 flex flex-col p-6 gap-6 font-mono font-bold text-xl text-center">
+    <a href="/" class="hover:text-gray-600">HOME</a>
+    <a href="/dashboard" class="hover:text-gray-600">DASHBOARD</a>
+    <a href="/login" class="bg-black text-white py-2 rounded-lg">LOGIN</a>
+</div>
+
+<script>
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+
+    btn.addEventListener('click', () => {
+
+        menu.classList.toggle('hidden');
+    });
+</script>
 
     {% block content %}
     {% endblock %}
