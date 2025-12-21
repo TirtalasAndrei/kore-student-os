@@ -32,15 +32,39 @@
                         </svg>
                     </button>
 
-                    <div class="ml-auto flex items-center gap-2">
-                      <button title="Actions" class="p-1.5 hover:bg-gray-100 rounded text-gray-500 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                          <circle cx="12" cy="12" r="1"/>
-                          <circle cx="19" cy="12" r="1"/>
-                          <circle cx="5" cy="12" r="1"/>
-                        </svg>
-                      </button>
+                    <div class="ml-auto flex items-center gap-2 relative">
+
+                <button id="action-btn" title="Actions" class="p-1.5 hover:bg-gray-100 rounded text-gray-500 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="1"/>
+                        <circle cx="19" cy="12" r="1"/>
+                        <circle cx="5" cy="12" r="1"/>
+                    </svg>
+                </button>
+
+                <div id="action-menu" class="hidden absolute top-full right-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 z-50 py-2 animate-in fade-in zoom-in-95 duration-100">
+
+                    <button class="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center justify-between group">
+                        <div class="flex items-center gap-3 text-sm text-gray-700 font-medium">
+                            <svg class="text-gray-400 group-hover:text-gray-600" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                            Print
+                        </div>
+                        <span class="text-xs text-gray-300 font-mono border border-gray-200 rounded px-1">Ctrl P</span>
+                    </button>
+
+                    <button class="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center gap-3 text-sm text-gray-700 font-medium group">
+                        <svg class="text-gray-400 group-hover:text-gray-600" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        Download / Export
+                    </button>
+
+                    <div class="h-[1px] bg-gray-100 my-1 mx-2"></div>
+
+                    <button class="w-full text-left px-4 py-2 hover:bg-red-50 flex items-center gap-3 text-sm text-red-600 font-medium group">
+                        <svg class="text-red-400 group-hover:text-red-600" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                        Delete Note
+                    </button>
+
+                </div>
 
                       <button class="bg-black text-white text-sm font-semibold px-4 py-1.5
                        rounded-lg hover:bg-gray-800 transition-all shadow-sm">
