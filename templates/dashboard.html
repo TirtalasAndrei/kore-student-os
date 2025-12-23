@@ -149,106 +149,40 @@
                 </div>
 
             </div>
-            <div class="flex-1 bg-white w-full min-h-[500px] overflow-y-auto p-8 md:p-12 cursor-text" id="editor-area" style="outline: none;"></div>
+
+            <!-- Writable textarea area -->
+            <div class="flex-1 bg-white w-full min-h-[500px] overflow-y-auto p-8 md:p-12">
+                <textarea
+                    id="editor-area"
+                    class="w-full h-full resize-none outline-none text-gray-800 text-base leading-relaxed"
+                    placeholder="Scrie povestea ta aici..."
+                    style="font-family: 'Inter', sans-serif; border: none;"
+                ></textarea>
+            </div>
 
         </div>
     </div>
 </div>
 
-
-<script src="https://unpkg.com/@editorjs/editorjs@latest"></script>
-<script src="https://unpkg.com/@editorjs/header@latest"></script>
-<script src="https://unpkg.com/@editorjs/list@latest"></script>
-<script src="https://unpkg.com/@editorjs/quote@latest"></script>
-<script src="https://unpkg.com/@editorjs/code@latest"></script>
-<script src="https://unpkg.com/@editorjs/simple-image@latest"></script>
-
 <script>
+    const btn = document.getElementById('action-btn');
+    const menu = document.getElementById('action-menu');
 
-    window.addEventListener('load', function() {
-
-        console.log("Verificăm librăriile...");
-
-
-        if (typeof EditorJS === 'undefined') {
-            alert("STOP! Browserul tău blochează descărcarea librăriei EditorJS.\n\nSoluție: Dezactivează AdBlocker sau verifică conexiunea la net.");
-            return; // Oprim totul ca să nu mai apară alte erori
-        }
-        if (typeof List === 'undefined') {
-             alert("STOP! Librăria pentru LISTE nu s-a descărcat.");
-             return;
-        }
-
-
-        const btn = document.getElementById('action-btn');
-        const menu = document.getElementById('action-menu');
-
-        if (btn && menu) {
-            btn.addEventListener('click', (e) => { e.stopPropagation(); menu.classList.toggle('hidden'); });
-            document.addEventListener('click', (e) => { if (!menu.contains(e.target) && !btn.contains(e.target)) menu.classList.add('hidden'); });
-        }
-
-
-        async function initEditor() {
-            let initialData = {};
-
-
-            try {
-                const response = await fetch('/get_note');
-                if(response.ok) {
-                    const serverData = await response.json();
-                    if (serverData && serverData.blocks && serverData.blocks.length > 0) {
-                        initialData = serverData;
-                    }
-                }
-            } catch (error) {
-                console.log("Notițe goale sau server oprit.");
+    if (btn && menu) {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menu.classList.toggle('hidden');
+        });
+        document.addEventListener('click', (e) => {
+            if (!menu.contains(e.target) && !btn.contains(e.target)) {
+                menu.classList.add('hidden');
             }
+        });
+    }
 
-
-            if (!initialData.blocks || initialData.blocks.length === 0) {
-                initialData = {
-                    blocks: [
-                        { type: "header", data: { text: "Titlu Nou", level: 2 } },
-                        { type: "paragraph", data: { text: "Scrie aici..." } }
-                    ]
-                };
-            }
-
-
-            const editor = new EditorJS({
-                holder: 'editor-area',
-                placeholder: 'Scrie povestea ta aici...',
-                autofocus: true,
-                tools: {
-                    header: { class: Header, config: { levels: [1, 2, 3], defaultLevel: 2 } },
-                    list: { class: List, inlineToolbar: true },
-                    quote: { class: Quote, inlineToolbar: true },
-                    code: CodeTool,
-                    image: SimpleImage
-                },
-                data: initialData
-            });
-
-
-            const saveBtn = document.getElementById('save-btn');
-            if (saveBtn) {
-                saveBtn.addEventListener('click', () => {
-                    editor.save().then((outputData) => {
-                        fetch('/save_note', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(outputData),
-                        }).then(() => alert('✅ Salvat!'));
-                    }).catch((err) => {
-                        console.error('Eroare salvare:', err);
-                    });
-                });
-            }
-        }
-
-
-        initEditor();
+    // Auto-focus the textarea when page loads
+    window.addEventListener('load', () => {
+        document.getElementById('editor-area').focus();
     });
 </script>
 </body>
