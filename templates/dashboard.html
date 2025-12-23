@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kore Dashboard</title>
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -18,103 +18,114 @@
         .ce-block__content {
             max-width: 100%;
         }
+
     </style>
 </head>
 
 <body class="bg-[#FFFBF7]">
 
-    <div class="w-full min-h-screen flex justify-center pt-8 pb-20 px-4">
-        <div class="relative w-full max-w-[1100px] h-[85vh]">
+<div class="w-full min-h-screen flex justify-center pt-8 pb-20 px-4">
+    <div class="relative w-full max-w-[1100px] h-[85vh]">
 
-            <div class="absolute -inset-1 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 rounded-2xl blur-xl opacity-30"></div>
+        <div class="absolute -inset-1 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 rounded-2xl blur-xl opacity-30"></div>
 
-            <div class="relative w-full h-full bg-white rounded-xl border border-[#E5E5E5] shadow-sm flex flex-col">
+        <div class="relative w-full h-full bg-white rounded-xl border border-[#E5E5E5] shadow-sm flex flex-col">
 
-                <div class="h-14 border-b border-[#F0F0F0] flex items-center px-3 bg-white rounded-t-xl select-none z-50">
+            <div class="h-14 border-b border-[#F0F0F0] flex items-center px-3 bg-white rounded-t-xl select-none z-50">
 
 
+                <button class="group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors mr-3">
 
-                    <button class="group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors mr-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
+                        <line x1="9" y1="3" x2="9" y2="21"/>
+                    </svg>
 
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
-                            <line x1="9" y1="3" x2="9" y2="21"/>
-                        </svg>
-
-                        <span class="pointer-events-none absolute top-full mt-2 left-0 whitespace-nowrap rounded-lg bg-white border border-gray-200 px-2 py-1 text-xs font-medium text-gray-700 shadow-md opacity-0 transition-opacity duration-200 group-hover:opacity-100 z-50">
+                    <span class="pointer-events-none absolute top-full mt-2 left-0 whitespace-nowrap rounded-lg bg-white border border-gray-200 px-2 py-1 text-xs font-medium text-gray-700 shadow-md opacity-0 transition-opacity duration-200 group-hover:opacity-100 z-50">
                             Istoric
 
                             <span class="absolute -top-1 left-2 border-4 border-transparent border-b-white"></span>
                         </span>
 
-                    </button>
+                </button>
 
-                    <div class="ml-auto flex items-center gap-2 relative">
+                <div class="ml-auto flex items-center gap-2 relative">
 
-                        <button id="action-btn" class="group relative p-1.5 hover:bg-gray-100 rounded text-gray-500 transition-colors cursor-pointer">
+                    <button id="action-btn"
+                            class="group relative p-1.5 hover:bg-gray-100 rounded text-gray-500 transition-colors cursor-pointer">
 
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="1"/>
-                                <circle cx="19" cy="12" r="1"/>
-                                <circle cx="5" cy="12" r="1"/>
-                            </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="1"/>
+                            <circle cx="19" cy="12" r="1"/>
+                            <circle cx="5" cy="12" r="1"/>
+                        </svg>
 
-                            <span class="pointer-events-none absolute top-full mt-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-lg
+                        <span class="pointer-events-none absolute top-full mt-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-lg
                             bg-white border border-gray-200 px-2 py-1 text-xs font-medium text-gray-700 shadow-md opacity-0 transition-opacity
                             duration-200 group-hover:opacity-100 z-50">
                                 Actions
                                 <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-t-white"></span>
                             </span>
 
+                    </button>
+
+                    <div id="action-menu"
+                         class="hidden absolute top-full right-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 z-50 py-2">
+                        <button class="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center justify-between text-sm text-gray-700 font-medium">
+                            <span>Print</span> <span
+                                class="text-xs text-gray-300 font-mono border border-gray-200 rounded px-1">Ctrl P</span>
                         </button>
-
-                        <div id="action-menu" class="hidden absolute top-full right-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 z-50 py-2">
-                            <button class="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center justify-between text-sm text-gray-700 font-medium">
-                                <span>Print</span> <span class="text-xs text-gray-300 font-mono border border-gray-200 rounded px-1">Ctrl P</span>
-                            </button>
-                            <button class="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center gap-3 text-sm text-gray-700 font-medium">
-                                Download / Export
-                            </button>
-                            <div class="h-[1px] bg-gray-100 my-1 mx-2"></div>
-                            <button class="w-full text-left px-4 py-2 hover:bg-red-50 flex items-center gap-3 text-sm text-red-600 font-medium">
-                                Delete Note
-                            </button>
-                        </div>
-
-                        <button class="bg-black text-white text-sm font-semibold px-4 py-1.5 rounded-lg hover:bg-gray-800 transition-all shadow-sm">
-                            Share
+                        <button class="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center gap-3 text-sm text-gray-700 font-medium">
+                            Download / Export
+                        </button>
+                        <div class="h-[1px] bg-gray-100 my-1 mx-2"></div>
+                        <button class="w-full text-left px-4 py-2 hover:bg-red-50 flex items-center gap-3 text-sm text-red-600 font-medium">
+                            Delete Note
                         </button>
                     </div>
-                </div>
 
-                <div class="w-full flex flex-row items-center gap-3 pl-3 py-3 md:py-2">
-                    <button class="self-start group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-                        </svg>
-                        <span class="pointer-events-none absolute top-full mt-2 left-0 whitespace-nowrap rounded-lg bg-white border border-gray-200 px-2 py-1 text-xs font-medium text-gray-700 shadow-md opacity-0 transition-opacity duration-200 group-hover:opacity-100 z-50">
+                    <button class="bg-black text-white text-sm font-semibold px-4 py-1.5 rounded-lg hover:bg-gray-800 transition-all shadow-sm">
+                        Share
+                    </button>
+                </div>
+            </div>
+
+            <div class="w-full flex flex-row items-center gap-3 pl-3 py-3 md:py-2">
+                <button class="self-start group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                         stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"/>
+                    </svg>
+                    <span class="pointer-events-none absolute top-full mt-2 left-0 whitespace-nowrap rounded-lg bg-white border border-gray-200 px-2 py-1 text-xs font-medium text-gray-700 shadow-md opacity-0 transition-opacity duration-200 group-hover:opacity-100 z-50">
                                 New Notes
 
                                 <span class="absolute -top-1 left-2 border-4 border-transparent border-b-white"></span>
                             </span>
-                    </button>
+                </button>
 
-                    <button class="self-start group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="m9 13.5 3 3m0 0 3-3m-3 3v-6m1.06-4.19-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
-                        </svg>
-                        <span class="pointer-events-none absolute top-full mt-2 left-0 whitespace-nowrap rounded-lg bg-white border border-gray-200 px-2 py-1 text-xs font-medium text-gray-700 shadow-md opacity-0 transition-opacity duration-200 group-hover:opacity-100 z-50">
+                <button class="self-start group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                         stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="m9 13.5 3 3m0 0 3-3m-3 3v-6m1.06-4.19-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z"/>
+                    </svg>
+                    <span class="pointer-events-none absolute top-full mt-2 left-0 whitespace-nowrap rounded-lg bg-white border border-gray-200 px-2 py-1 text-xs font-medium text-gray-700 shadow-md opacity-0 transition-opacity duration-200 group-hover:opacity-100 z-50">
                                 Import File
 
                                 <span class="absolute -top-1 left-2 border-4 border-transparent border-b-white"></span>
                         </span>
-                    </button>
+                </button>
 
-                    <div class="flex items-center pr-3 gap-1">
+                <div class="flex items-center pr-3 gap-1">
 
                     <button class="self-start group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="m7.49 12-3.75 3.75m0 0 3.75 3.75m-3.75-3.75h16.5V4.499" />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                             stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="m7.49 12-3.75 3.75m0 0 3.75 3.75m-3.75-3.75h16.5V4.499"/>
                         </svg>
                         <span class="pointer-events-none absolute top-full mt-2 left-0 whitespace-nowrap rounded-lg bg-white border border-gray-200 px-2 py-1 text-xs font-medium text-gray-700 shadow-md opacity-0 transition-opacity duration-200 group-hover:opacity-100 z-50">
                                 Undo
@@ -124,8 +135,10 @@
                     </button>
 
                     <button class="self-start group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="m16.49 12 3.75 3.75m0 0-3.75 3.75m3.75-3.75H3.74V4.499" />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                             stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="m16.49 12 3.75 3.75m0 0-3.75 3.75m3.75-3.75H3.74V4.499"/>
                         </svg>
                         <span class="pointer-events-none absolute top-full mt-2 left-0 whitespace-nowrap rounded-lg bg-white border border-gray-200 px-2 py-1 text-xs font-medium text-gray-700 shadow-md opacity-0 transition-opacity duration-200 group-hover:opacity-100 z-50">
                                 Redo
@@ -134,69 +147,109 @@
                         </span>
                     </button>
                 </div>
-                </div>
+
+            </div>
+            <div class="flex-1 bg-white w-full min-h-[500px] overflow-y-auto p-8 md:p-12 cursor-text" id="editor-area" style="outline: none;"></div>
+
+        </div>
+    </div>
+</div>
 
 
+<script src="https://unpkg.com/@editorjs/editorjs@latest"></script>
+<script src="https://unpkg.com/@editorjs/header@latest"></script>
+<script src="https://unpkg.com/@editorjs/list@latest"></script>
+<script src="https://unpkg.com/@editorjs/quote@latest"></script>
+<script src="https://unpkg.com/@editorjs/code@latest"></script>
+<script src="https://unpkg.com/@editorjs/simple-image@latest"></script>
+
+<script>
+
+    window.addEventListener('load', function() {
+
+        console.log("Verificăm librăriile...");
 
 
+        if (typeof EditorJS === 'undefined') {
+            alert("STOP! Browserul tău blochează descărcarea librăriei EditorJS.\n\nSoluție: Dezactivează AdBlocker sau verifică conexiunea la net.");
+            return; // Oprim totul ca să nu mai apară alte erori
+        }
+        if (typeof List === 'undefined') {
+             alert("STOP! Librăria pentru LISTE nu s-a descărcat.");
+             return;
+        }
 
 
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/code@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest"></script>
+        const btn = document.getElementById('action-btn');
+        const menu = document.getElementById('action-menu');
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        if (btn && menu) {
+            btn.addEventListener('click', (e) => { e.stopPropagation(); menu.classList.toggle('hidden'); });
+            document.addEventListener('click', (e) => { if (!menu.contains(e.target) && !btn.contains(e.target)) menu.classList.add('hidden'); });
+        }
 
 
-            const btn = document.getElementById('action-btn');
-            const menu = document.getElementById('action-menu');
+        async function initEditor() {
+            let initialData = {};
 
-            if (btn && menu) {
-                btn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    menu.classList.toggle('hidden'); // Scoate sau pune clasa 'hidden'
-                });
 
-                document.addEventListener('click', (e) => {
-                    if (!menu.contains(e.target) && !btn.contains(e.target)) {
-                        menu.classList.add('hidden'); // Ascunde meniul dacă dai click altundeva
+            try {
+                const response = await fetch('/get_note');
+                if(response.ok) {
+                    const serverData = await response.json();
+                    if (serverData && serverData.blocks && serverData.blocks.length > 0) {
+                        initialData = serverData;
                     }
-                });
-            } else {
-                console.error("EROARE: Nu am găsit butonul sau meniul în HTML!");
+                }
+            } catch (error) {
+                console.log("Notițe goale sau server oprit.");
             }
 
 
-            if (typeof EditorJS === 'undefined') {
-                alert("Eroare: EditorJS nu s-a încărcat de pe internet. Verifică conexiunea.");
-                return;
+            if (!initialData.blocks || initialData.blocks.length === 0) {
+                initialData = {
+                    blocks: [
+                        { type: "header", data: { text: "Titlu Nou", level: 2 } },
+                        { type: "paragraph", data: { text: "Scrie aici..." } }
+                    ]
+                };
             }
+
 
             const editor = new EditorJS({
                 holder: 'editor-area',
-                placeholder: 'Scrie ceva aici...',
+                placeholder: 'Scrie povestea ta aici...',
+                autofocus: true,
                 tools: {
-                    header: {
-                        class: Header,
-                        config: { levels: [1, 2, 3], defaultLevel: 2 }
-                    },
+                    header: { class: Header, config: { levels: [1, 2, 3], defaultLevel: 2 } },
                     list: { class: List, inlineToolbar: true },
                     quote: { class: Quote, inlineToolbar: true },
                     code: CodeTool,
                     image: SimpleImage
                 },
-                data: {
-                    blocks: [
-                        { type: "header", data: { text: "Titlu de start", level: 2 } },
-                        { type: "paragraph", data: { text: "Scrie aici..." } }
-                    ]
-                }
+                data: initialData
             });
-        });
-    </script>
+
+
+            const saveBtn = document.getElementById('save-btn');
+            if (saveBtn) {
+                saveBtn.addEventListener('click', () => {
+                    editor.save().then((outputData) => {
+                        fetch('/save_note', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(outputData),
+                        }).then(() => alert('✅ Salvat!'));
+                    }).catch((err) => {
+                        console.error('Eroare salvare:', err);
+                    });
+                });
+            }
+        }
+
+
+        initEditor();
+    });
+</script>
 </body>
 </html>
