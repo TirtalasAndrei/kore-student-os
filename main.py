@@ -50,9 +50,21 @@ def get_note():
     else:
         return jsonify({})
 
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def sign_up_login():
-    return render_template("loginpage.html")
+    if request.method == 'GET':
+        return render_template("loginpage.html")
+
+    if request.method == 'POST':
+        data = request.json
+        email = data.get("email")
+        password = data.get("password")
+
+    if email == "student@kore.com" and password == "admin":
+
+        return jsonify({"success": True, "message": "Autentificare reușită!"})
+    else:
+        return jsonify({"success": False, "message": "Email sau parolă greșită!"})
 
 if __name__ == "__main__":
     app.run(debug=True)
