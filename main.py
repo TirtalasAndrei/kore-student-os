@@ -50,5 +50,9 @@ def get_note():
     else:
         return jsonify({})
 
+@app.route('/login', methods=['POST'])
+def sign_up_login():
+    return render_template("loginpage.html")
+
 if __name__ == "__main__":
     app.run(debug=True)
