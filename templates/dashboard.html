@@ -52,6 +52,28 @@
 </head>
 
 <body class="bg-[#FFFBF7]">
+<div class="relative w-full max-w-[1100px] mx-auto mt-12 z-50">
+
+        <div class="absolute -inset-1 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 rounded-2xl blur-xl opacity-30"></div>
+
+        <header class="relative bg-white rounded-2xl px-6 md:px-12 py-4 flex items-center justify-between">
+
+            <a href="/" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                <img
+                    src="{{ url_for('static', filename='images/Logo.png') }}"
+                    alt="KORE Logo"
+                    class="h-10 md:h-12 w-auto object-contain bg-gradient-to-r from-[#250BE9] to-[#FFD4DF] rounded-xl"
+                >
+
+            </a>
+
+            <div class="flex items-center gap-8 text-sm font-medium text-gray-600">
+                <a href="/" class="hover:text-black transition-colors">Home</a>
+                <a href="/login" class="hover:text-black transition-colors">Login</a>
+            </div>
+
+        </header>
+    </div>
 
 <div class="w-full min-h-screen flex justify-center pt-8 pb-20 px-4">
     <div class="relative w-full max-w-[1100px] h-[85vh]">
@@ -64,7 +86,8 @@
             <div class="h-14 border-b border-[#F0F0F0] flex items-center px-3 bg-white rounded-t-xl select-none z-50">
 
                 <!-- History Button -->
-                <button id="history-btn" class="group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors mr-3">
+                <button id="history-btn"
+                        class="group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors mr-3">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
@@ -100,20 +123,24 @@
                     <!-- Actions Menu -->
                     <div id="action-menu"
                          class="hidden absolute top-full right-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 z-50 py-2">
-                        <button id="print-btn" class="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center justify-between text-sm text-gray-700 font-medium">
+                        <button id="print-btn"
+                                class="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center justify-between text-sm text-gray-700 font-medium">
                             <span>Print</span>
                             <span class="text-xs text-gray-300 font-mono border border-gray-200 rounded px-1">Ctrl P</span>
                         </button>
-                        <button id="export-btn" class="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center gap-3 text-sm text-gray-700 font-medium">
+                        <button id="export-btn"
+                                class="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center gap-3 text-sm text-gray-700 font-medium">
                             Download / Export
                         </button>
                         <div class="h-[1px] bg-gray-100 my-1 mx-2"></div>
-                        <button id="delete-btn" class="w-full text-left px-4 py-2 hover:bg-red-50 flex items-center gap-3 text-sm text-red-600 font-medium">
+                        <button id="delete-btn"
+                                class="w-full text-left px-4 py-2 hover:bg-red-50 flex items-center gap-3 text-sm text-red-600 font-medium">
                             Delete Note
                         </button>
                     </div>
 
-                    <button id="share-btn" class="bg-black text-white text-sm font-semibold px-4 py-1.5 rounded-lg hover:bg-gray-800 transition-all shadow-sm">
+                    <button id="share-btn"
+                            class="bg-black text-white text-sm font-semibold px-4 py-1.5 rounded-lg hover:bg-gray-800 transition-all shadow-sm">
                         Share
                     </button>
                 </div>
@@ -121,7 +148,8 @@
 
             <!-- Toolbar -->
             <div class="w-full flex flex-row items-center gap-3 pl-3 py-3 md:py-2">
-                <button id="new-note-btn" class="self-start group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors cursor-pointer">
+                <button id="new-note-btn"
+                        class="self-start group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                          stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -133,7 +161,8 @@
                     </span>
                 </button>
 
-                <button id="import-btn" class="self-start group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors cursor-pointer">
+                <button id="import-btn"
+                        class="self-start group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                          stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -146,7 +175,8 @@
                 </button>
 
                 <div class="flex items-center pr-3 gap-1">
-                    <button id="undo-btn" class="self-start group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors cursor-pointer">
+                    <button id="undo-btn"
+                            class="self-start group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                              stroke="currentColor" class="size-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -158,7 +188,8 @@
                         </span>
                     </button>
 
-                    <button id="redo-btn" class="self-start group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors cursor-pointer">
+                    <button id="redo-btn"
+                            class="self-start group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                              stroke="currentColor" class="size-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -175,10 +206,10 @@
             <!-- Editor Area -->
             <div class="flex-1 bg-white w-full min-h-[500px] overflow-y-auto p-8 md:p-12">
                 <textarea
-                    id="editor-area"
-                    class="w-full h-full resize-none outline-none text-gray-800 text-base leading-relaxed"
-                    placeholder="Scrie povestea ta aici..."
-                    style="font-family: 'Inter', sans-serif; border: none;"
+                        id="editor-area"
+                        class="w-full h-full resize-none outline-none text-gray-800 text-base leading-relaxed"
+                        placeholder="Scrie povestea ta aici..."
+                        style="font-family: 'Inter', sans-serif; border: none;"
                 ></textarea>
             </div>
 
@@ -187,7 +218,8 @@
 </div>
 
 <!-- History Sidebar -->
-<div id="history-sidebar" class="hidden fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-[100] border-l border-gray-200">
+<div id="history-sidebar"
+     class="hidden fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-[100] border-l border-gray-200">
     <div class="h-full flex flex-col">
         <!-- Sidebar Header -->
         <div class="h-14 border-b border-gray-200 flex items-center justify-between px-4">
