@@ -11,14 +11,43 @@
     <style>
         body { font-family: 'Inter', sans-serif; }
 
-        .codex-editor__redactor {
-            padding-bottom: 50px !important;
-            text-align: left;
-        }
-        .ce-block__content {
-            max-width: 100%;
+        .sidebar-enter {
+            animation: slideIn 0.3s ease-out;
         }
 
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .sidebar-exit {
+            animation: slideOut 0.3s ease-out;
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
+        .note-item:hover {
+            background-color: #f9fafb;
+        }
+
+        #editor-area:focus {
+            outline: none;
+        }
     </style>
 </head>
 
@@ -31,11 +60,11 @@
 
         <div class="relative w-full h-full bg-white rounded-xl border border-[#E5E5E5] shadow-sm flex flex-col">
 
+            <!-- Header -->
             <div class="h-14 border-b border-[#F0F0F0] flex items-center px-3 bg-white rounded-t-xl select-none z-50">
 
-
-                <button class="group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors mr-3">
-
+                <!-- History Button -->
+                <button id="history-btn" class="group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors mr-3">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
@@ -43,18 +72,16 @@
                     </svg>
 
                     <span class="pointer-events-none absolute top-full mt-2 left-0 whitespace-nowrap rounded-lg bg-white border border-gray-200 px-2 py-1 text-xs font-medium text-gray-700 shadow-md opacity-0 transition-opacity duration-200 group-hover:opacity-100 z-50">
-                            Istoric
-
-                            <span class="absolute -top-1 left-2 border-4 border-transparent border-b-white"></span>
-                        </span>
-
+                        Istoric
+                        <span class="absolute -top-1 left-2 border-4 border-transparent border-b-white"></span>
+                    </span>
                 </button>
 
+                <!-- Right side buttons -->
                 <div class="ml-auto flex items-center gap-2 relative">
 
                     <button id="action-btn"
                             class="group relative p-1.5 hover:bg-gray-100 rounded text-gray-500 transition-colors cursor-pointer">
-
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="12" cy="12" r="1"/>
@@ -65,92 +92,87 @@
                         <span class="pointer-events-none absolute top-full mt-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-lg
                             bg-white border border-gray-200 px-2 py-1 text-xs font-medium text-gray-700 shadow-md opacity-0 transition-opacity
                             duration-200 group-hover:opacity-100 z-50">
-                                Actions
-                                <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-t-white"></span>
-                            </span>
-
+                            Actions
+                            <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-t-white"></span>
+                        </span>
                     </button>
 
+                    <!-- Actions Menu -->
                     <div id="action-menu"
                          class="hidden absolute top-full right-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 z-50 py-2">
-                        <button class="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center justify-between text-sm text-gray-700 font-medium">
-                            <span>Print</span> <span
-                                class="text-xs text-gray-300 font-mono border border-gray-200 rounded px-1">Ctrl P</span>
+                        <button id="print-btn" class="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center justify-between text-sm text-gray-700 font-medium">
+                            <span>Print</span>
+                            <span class="text-xs text-gray-300 font-mono border border-gray-200 rounded px-1">Ctrl P</span>
                         </button>
-                        <button class="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center gap-3 text-sm text-gray-700 font-medium">
+                        <button id="export-btn" class="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center gap-3 text-sm text-gray-700 font-medium">
                             Download / Export
                         </button>
                         <div class="h-[1px] bg-gray-100 my-1 mx-2"></div>
-                        <button class="w-full text-left px-4 py-2 hover:bg-red-50 flex items-center gap-3 text-sm text-red-600 font-medium">
+                        <button id="delete-btn" class="w-full text-left px-4 py-2 hover:bg-red-50 flex items-center gap-3 text-sm text-red-600 font-medium">
                             Delete Note
                         </button>
                     </div>
 
-                    <button class="bg-black text-white text-sm font-semibold px-4 py-1.5 rounded-lg hover:bg-gray-800 transition-all shadow-sm">
+                    <button id="share-btn" class="bg-black text-white text-sm font-semibold px-4 py-1.5 rounded-lg hover:bg-gray-800 transition-all shadow-sm">
                         Share
                     </button>
                 </div>
             </div>
 
+            <!-- Toolbar -->
             <div class="w-full flex flex-row items-center gap-3 pl-3 py-3 md:py-2">
-                <button class="self-start group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors cursor-pointer">
+                <button id="new-note-btn" class="self-start group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                          stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
                               d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"/>
                     </svg>
                     <span class="pointer-events-none absolute top-full mt-2 left-0 whitespace-nowrap rounded-lg bg-white border border-gray-200 px-2 py-1 text-xs font-medium text-gray-700 shadow-md opacity-0 transition-opacity duration-200 group-hover:opacity-100 z-50">
-                                New Notes
-
-                                <span class="absolute -top-1 left-2 border-4 border-transparent border-b-white"></span>
-                            </span>
+                        New Notes
+                        <span class="absolute -top-1 left-2 border-4 border-transparent border-b-white"></span>
+                    </span>
                 </button>
 
-                <button class="self-start group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors cursor-pointer">
+                <button id="import-btn" class="self-start group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                          stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
                               d="m9 13.5 3 3m0 0 3-3m-3 3v-6m1.06-4.19-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z"/>
                     </svg>
                     <span class="pointer-events-none absolute top-full mt-2 left-0 whitespace-nowrap rounded-lg bg-white border border-gray-200 px-2 py-1 text-xs font-medium text-gray-700 shadow-md opacity-0 transition-opacity duration-200 group-hover:opacity-100 z-50">
-                                Import File
-
-                                <span class="absolute -top-1 left-2 border-4 border-transparent border-b-white"></span>
-                        </span>
+                        Import File
+                        <span class="absolute -top-1 left-2 border-4 border-transparent border-b-white"></span>
+                    </span>
                 </button>
 
                 <div class="flex items-center pr-3 gap-1">
-
-                    <button class="self-start group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors cursor-pointer">
+                    <button id="undo-btn" class="self-start group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                              stroke="currentColor" class="size-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                   d="m7.49 12-3.75 3.75m0 0 3.75 3.75m-3.75-3.75h16.5V4.499"/>
                         </svg>
                         <span class="pointer-events-none absolute top-full mt-2 left-0 whitespace-nowrap rounded-lg bg-white border border-gray-200 px-2 py-1 text-xs font-medium text-gray-700 shadow-md opacity-0 transition-opacity duration-200 group-hover:opacity-100 z-50">
-                                Undo
-
-                                <span class="absolute -top-1 left-2 border-4 border-transparent border-b-white"></span>
+                            Undo
+                            <span class="absolute -top-1 left-2 border-4 border-transparent border-b-white"></span>
                         </span>
                     </button>
 
-                    <button class="self-start group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors cursor-pointer">
+                    <button id="redo-btn" class="self-start group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                              stroke="currentColor" class="size-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                   d="m16.49 12 3.75 3.75m0 0-3.75 3.75m3.75-3.75H3.74V4.499"/>
                         </svg>
                         <span class="pointer-events-none absolute top-full mt-2 left-0 whitespace-nowrap rounded-lg bg-white border border-gray-200 px-2 py-1 text-xs font-medium text-gray-700 shadow-md opacity-0 transition-opacity duration-200 group-hover:opacity-100 z-50">
-                                Redo
-
-                                <span class="absolute -top-1 left-2 border-4 border-transparent border-b-white"></span>
+                            Redo
+                            <span class="absolute -top-1 left-2 border-4 border-transparent border-b-white"></span>
                         </span>
                     </button>
                 </div>
-
             </div>
 
-            <!-- Writable textarea area -->
+            <!-- Editor Area -->
             <div class="flex-1 bg-white w-full min-h-[500px] overflow-y-auto p-8 md:p-12">
                 <textarea
                     id="editor-area"
@@ -164,25 +186,321 @@
     </div>
 </div>
 
-<script>
-    const btn = document.getElementById('action-btn');
-    const menu = document.getElementById('action-menu');
+<!-- History Sidebar -->
+<div id="history-sidebar" class="hidden fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-[100] border-l border-gray-200">
+    <div class="h-full flex flex-col">
+        <!-- Sidebar Header -->
+        <div class="h-14 border-b border-gray-200 flex items-center justify-between px-4">
+            <h2 class="font-semibold text-gray-800">Istoric Notițe</h2>
+            <button id="close-sidebar-btn" class="p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
 
-    if (btn && menu) {
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            menu.classList.toggle('hidden');
-        });
-        document.addEventListener('click', (e) => {
-            if (!menu.contains(e.target) && !btn.contains(e.target)) {
-                menu.classList.add('hidden');
+        <!-- Notes List -->
+        <div id="notes-list" class="flex-1 overflow-y-auto p-4">
+            <div class="text-gray-400 text-sm text-center py-8">
+                Nu există notițe salvate
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Overlay for sidebar -->
+<div id="sidebar-overlay" class="hidden fixed inset-0 bg-black bg-opacity-30 z-[99]"></div>
+
+<!-- Hidden file input for import -->
+<input type="file" id="file-input" accept=".txt,.md" class="hidden">
+
+<script>
+    // State management
+    let notes = [];
+    let currentNoteId = null;
+    let undoStack = [];
+    let redoStack = [];
+
+    // DOM elements
+    const editorArea = document.getElementById('editor-area');
+    const historyBtn = document.getElementById('history-btn');
+    const historySidebar = document.getElementById('history-sidebar');
+    const sidebarOverlay = document.getElementById('sidebar-overlay');
+    const closeSidebarBtn = document.getElementById('close-sidebar-btn');
+    const notesList = document.getElementById('notes-list');
+    const actionBtn = document.getElementById('action-btn');
+    const actionMenu = document.getElementById('action-menu');
+    const newNoteBtn = document.getElementById('new-note-btn');
+    const importBtn = document.getElementById('import-btn');
+    const fileInput = document.getElementById('file-input');
+    const undoBtn = document.getElementById('undo-btn');
+    const redoBtn = document.getElementById('redo-btn');
+    const printBtn = document.getElementById('print-btn');
+    const exportBtn = document.getElementById('export-btn');
+    const deleteBtn = document.getElementById('delete-btn');
+    const shareBtn = document.getElementById('share-btn');
+
+    // Load notes from localStorage
+    function loadNotes() {
+        const saved = localStorage.getItem('kore_notes');
+        if (saved) {
+            notes = JSON.parse(saved);
+        }
+        if (notes.length === 0) {
+            createNewNote();
+        } else {
+            loadNote(notes[0].id);
+        }
+        renderNotesList();
+    }
+
+    // Save notes to localStorage
+    function saveNotes() {
+        localStorage.setItem('kore_notes', JSON.stringify(notes));
+    }
+
+    // Create new note
+    function createNewNote() {
+        const newNote = {
+            id: Date.now(),
+            title: 'Notiță nouă',
+            content: '',
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString()
+        };
+        notes.unshift(newNote);
+        saveNotes();
+        loadNote(newNote.id);
+        renderNotesList();
+    }
+
+    // Load note into editor
+    function loadNote(noteId) {
+        const note = notes.find(n => n.id === noteId);
+        if (note) {
+            currentNoteId = noteId;
+            editorArea.value = note.content;
+            undoStack = [];
+            redoStack = [];
+        }
+    }
+
+    // Save current note
+    function saveCurrentNote() {
+        if (currentNoteId) {
+            const note = notes.find(n => n.id === currentNoteId);
+            if (note) {
+                note.content = editorArea.value;
+                note.updatedAt = new Date().toISOString();
+
+                // Update title based on first line
+                const firstLine = editorArea.value.split('\n')[0].trim();
+                note.title = firstLine || 'Notiță nouă';
+
+                saveNotes();
+                renderNotesList();
             }
+        }
+    }
+
+    // Render notes list in sidebar
+    function renderNotesList() {
+        if (notes.length === 0) {
+            notesList.innerHTML = '<div class="text-gray-400 text-sm text-center py-8">Nu există notițe salvate</div>';
+            return;
+        }
+
+        notesList.innerHTML = notes.map(note => {
+            const date = new Date(note.updatedAt);
+            const preview = note.content.substring(0, 100) || 'Notiță goală';
+            const isActive = note.id === currentNoteId;
+
+            return `
+                <div class="note-item p-3 rounded-lg cursor-pointer border ${isActive ? 'border-blue-500 bg-blue-50' : 'border-gray-200'} mb-2 transition-all"
+                     data-note-id="${note.id}">
+                    <div class="font-medium text-sm text-gray-800 mb-1 truncate">${note.title}</div>
+                    <div class="text-xs text-gray-500 mb-2">${date.toLocaleDateString('ro-RO')}</div>
+                    <div class="text-xs text-gray-600 line-clamp-2">${preview}</div>
+                </div>
+            `;
+        }).join('');
+
+        // Add click handlers
+        document.querySelectorAll('.note-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const noteId = parseInt(item.dataset.noteId);
+                loadNote(noteId);
+                renderNotesList();
+            });
         });
     }
 
-    // Auto-focus the textarea when page loads
+    // Toggle history sidebar
+    function toggleHistorySidebar() {
+        const isHidden = historySidebar.classList.contains('hidden');
+
+        if (isHidden) {
+            historySidebar.classList.remove('hidden');
+            historySidebar.classList.add('sidebar-enter');
+            sidebarOverlay.classList.remove('hidden');
+        } else {
+            historySidebar.classList.add('sidebar-exit');
+            setTimeout(() => {
+                historySidebar.classList.add('hidden');
+                historySidebar.classList.remove('sidebar-exit', 'sidebar-enter');
+            }, 300);
+            sidebarOverlay.classList.add('hidden');
+        }
+    }
+
+    // Undo/Redo functionality
+    function pushToUndoStack() {
+        undoStack.push(editorArea.value);
+        if (undoStack.length > 50) undoStack.shift();
+        redoStack = [];
+    }
+
+    function undo() {
+        if (undoStack.length > 0) {
+            redoStack.push(editorArea.value);
+            editorArea.value = undoStack.pop();
+            saveCurrentNote();
+        }
+    }
+
+    function redo() {
+        if (redoStack.length > 0) {
+            undoStack.push(editorArea.value);
+            editorArea.value = redoStack.pop();
+            saveCurrentNote();
+        }
+    }
+
+    // Print functionality
+    function printNote() {
+        window.print();
+    }
+
+    // Export functionality
+    function exportNote() {
+        const note = notes.find(n => n.id === currentNoteId);
+        if (note) {
+            const blob = new Blob([note.content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${note.title}.txt`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+    }
+
+    // Delete functionality
+    function deleteNote() {
+        if (confirm('Ești sigur că vrei să ștergi această notiță?')) {
+            notes = notes.filter(n => n.id !== currentNoteId);
+            saveNotes();
+
+            if (notes.length === 0) {
+                createNewNote();
+            } else {
+                loadNote(notes[0].id);
+            }
+
+            renderNotesList();
+            actionMenu.classList.add('hidden');
+        }
+    }
+
+    // Share functionality
+    function shareNote() {
+        const note = notes.find(n => n.id === currentNoteId);
+        if (note && navigator.share) {
+            navigator.share({
+                title: note.title,
+                text: note.content
+            }).catch(() => {});
+        } else {
+            // Fallback: copy to clipboard
+            navigator.clipboard.writeText(editorArea.value);
+            alert('Conținutul a fost copiat în clipboard!');
+        }
+    }
+
+    // Import file
+    function importFile(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                editorArea.value = e.target.result;
+                saveCurrentNote();
+            };
+            reader.readAsText(file);
+        }
+    }
+
+    // Event Listeners
+    historyBtn.addEventListener('click', toggleHistorySidebar);
+    closeSidebarBtn.addEventListener('click', toggleHistorySidebar);
+    sidebarOverlay.addEventListener('click', toggleHistorySidebar);
+
+    actionBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        actionMenu.classList.toggle('hidden');
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!actionMenu.contains(e.target) && !actionBtn.contains(e.target)) {
+            actionMenu.classList.add('hidden');
+        }
+    });
+
+    newNoteBtn.addEventListener('click', createNewNote);
+    importBtn.addEventListener('click', () => fileInput.click());
+    fileInput.addEventListener('change', importFile);
+    undoBtn.addEventListener('click', undo);
+    redoBtn.addEventListener('click', redo);
+    printBtn.addEventListener('click', printNote);
+    exportBtn.addEventListener('click', exportNote);
+    deleteBtn.addEventListener('click', deleteNote);
+    shareBtn.addEventListener('click', shareNote);
+
+    // Auto-save
+    let saveTimeout;
+    editorArea.addEventListener('input', () => {
+        clearTimeout(saveTimeout);
+        saveTimeout = setTimeout(() => {
+            pushToUndoStack();
+            saveCurrentNote();
+        }, 1000);
+    });
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+        if (e.ctrlKey || e.metaKey) {
+            if (e.key === 'z' && !e.shiftKey) {
+                e.preventDefault();
+                undo();
+            } else if (e.key === 'z' && e.shiftKey || e.key === 'y') {
+                e.preventDefault();
+                redo();
+            } else if (e.key === 'p') {
+                e.preventDefault();
+                printNote();
+            } else if (e.key === 's') {
+                e.preventDefault();
+                saveCurrentNote();
+            }
+        }
+    });
+
+    // Initialize
     window.addEventListener('load', () => {
-        document.getElementById('editor-area').focus();
+        loadNotes();
+        editorArea.focus();
     });
 </script>
 </body>
