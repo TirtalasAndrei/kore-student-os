@@ -54,26 +54,26 @@
 <body class="bg-[#FFFBF7]">
 <div class="relative w-full max-w-[1100px] mx-auto mt-12 z-50">
 
-        <div class="absolute -inset-1 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 rounded-2xl blur-xl opacity-30"></div>
+    <div class="absolute -inset-1 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 rounded-2xl blur-xl opacity-30"></div>
 
-        <header class="relative bg-white rounded-2xl px-6 md:px-12 py-4 flex items-center justify-between">
+    <header class="relative bg-white rounded-2xl px-6 md:px-12 py-4 flex items-center justify-between">
 
-            <a href="/" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
-                <img
+        <a href="/" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+            <img
                     src="{{ url_for('static', filename='images/Logo.png') }}"
                     alt="KORE Logo"
                     class="h-10 md:h-12 w-auto object-contain bg-gradient-to-r from-[#250BE9] to-[#FFD4DF] rounded-xl"
-                >
+            >
 
-            </a>
+        </a>
 
-            <div class="flex items-center gap-8 text-sm font-medium text-gray-600">
-                <a href="/" class="hover:text-black transition-colors">Home</a>
-                <a href="/login" class="hover:text-black transition-colors">Login</a>
-            </div>
+        <div class="flex items-center gap-8 text-sm font-medium text-gray-600">
+            <a href="/" class="hover:text-black transition-colors">Home</a>
+            <a href="/login" class="hover:text-black transition-colors">Login</a>
+        </div>
 
-        </header>
-    </div>
+    </header>
+</div>
 
 <div class="w-full min-h-screen flex justify-center pt-8 pb-20 px-4">
     <div class="relative w-full max-w-[1100px] h-[85vh]">
@@ -200,6 +200,114 @@
                             <span class="absolute -top-1 left-2 border-4 border-transparent border-b-white"></span>
                         </span>
                     </button>
+                    <button id="style-dropdown-btn" class="flex items-center gap-1 group relative px-2 py-1.5 hover:bg-gray-100 rounded text-gray-700 transition-colors cursor-pointer">
+
+                        <span class="text-sm font-medium whitespace-nowrap">Normal Text</span>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-3 opacity-70 mt-0.5">
+                            <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                        </svg>
+
+                        <span class="pointer-events-none absolute top-full mt-2 left-0 whitespace-nowrap rounded-lg bg-white border border-gray-200 px-2 py-1 text-xs font-medium text-gray-700 shadow-md opacity-0 transition-opacity duration-200 group-hover:opacity-100 z-50">
+                            Change Text Style
+                            <span class="absolute -top-1 left-2 border-4 border-transparent border-b-white"></span>
+                        </span>
+
+                    </button>
+                    <button id="bold-btn"
+                            class="self-start group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors cursor-pointer">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                          <path stroke-linejoin="round" d="M6.75 3.744h-.753v8.25h7.125a4.125 4.125 0 0 0 0-8.25H6.75Zm0 0v.38m0 16.122h6.747a4.5 4.5 0 0 0 0-9.001h-7.5v9h.753Zm0 0v-.37m0-15.751h6a3.75 3.75 0 1 1 0 7.5h-6m0-7.5v7.5m0 0v8.25m0-8.25h6.375a4.125 4.125 0 0 1 0 8.25H6.75m.747-15.38h4.875a3.375 3.375 0 0 1 0 6.75H7.497v-6.75Zm0 7.5h5.25a3.75 3.75 0 0 1 0 7.5h-5.25v-7.5Z" />
+
+                        </svg>
+                        <span class="pointer-events-none absolute top-full mt-2 left-0 whitespace-nowrap rounded-lg bg-white border border-gray-200 px-2 py-1 text-xs font-medium text-gray-700 shadow-md opacity-0 transition-opacity duration-200 group-hover:opacity-100 z-50">
+                            Bold
+                            <span class="absolute -top-1 left-2 border-4 border-transparent border-b-white"></span>
+                        </span>
+                    </button>
+                    <button id="italic-btn" class="self-start group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M5.248 20.246H9.05m0 0h3.696m-3.696 0 5.893-16.502m0 0h-3.697m3.697 0h3.803" />
+                        </svg>
+                        <span class="pointer-events-none absolute top-full mt-2 left-0 whitespace-nowrap rounded-lg bg-white border border-gray-200 px-2 py-1 text-xs font-medium text-gray-700 shadow-md opacity-0 transition-opacity duration-200 group-hover:opacity-100 z-50">
+                            Italic
+                            <span class="absolute -top-1 left-2 border-4 border-transparent border-b-white"></span>
+                        </span>
+                    </button>
+                    <button id="underline-btn" class="self-start group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M17.995 3.744v7.5a6 6 0 1 1-12 0v-7.5m-2.25 16.502h16.5" />
+                        </svg>
+                        <span class="pointer-events-none absolute top-full mt-2 left-0 whitespace-nowrap rounded-lg bg-white border border-gray-200 px-2 py-1 text-xs font-medium text-gray-700 shadow-md opacity-0 transition-opacity duration-200 group-hover:opacity-100 z-50">
+                            Underline
+                            <span class="absolute -top-1 left-2 border-4 border-transparent border-b-white"></span>
+                        </span>
+                    </button>
+                    <button id="bullet-list-btn" class="self-start group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                        </svg>
+                        <span class="pointer-events-none absolute top-full mt-2 left-0 whitespace-nowrap rounded-lg bg-white border border-gray-200 px-2 py-1 text-xs font-medium text-gray-700 shadow-md opacity-0 transition-opacity duration-200 group-hover:opacity-100 z-50">
+                            List Bullet
+                            <span class="absolute -top-1 left-2 border-4 border-transparent border-b-white"></span>
+                        </span>
+                    </button>
+                    <button id="numbered-list-btn" class="self-start group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M8.242 5.992h12m-12 6.003H20.24m-12 5.999h12M4.117 7.495v-3.75H2.99m1.125 3.75H2.99m1.125 0H5.24m-1.92 2.577a1.125 1.125 0 1 1 1.591 1.59l-1.83 1.83h2.16M2.99 15.745h1.125a1.125 1.125 0 0 1 0 2.25H3.74m0-.002h.375a1.125 1.125 0 0 1 0 2.25H2.99" />
+                        </svg>
+                        <span class="pointer-events-none absolute top-full mt-2 left-0 whitespace-nowrap rounded-lg bg-white border border-gray-200 px-2 py-1 text-xs font-medium text-gray-700 shadow-md opacity-0 transition-opacity duration-200 group-hover:opacity-100 z-50">
+                            List Number
+                            <span class="absolute -top-1 left-2 border-4 border-transparent border-b-white"></span>
+                        </span>
+                    </button>
+                    <button id="link-btn" class="self-start group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+                        </svg>
+                        <span class="pointer-events-none absolute top-full mt-2 left-0 whitespace-nowrap rounded-lg bg-white border border-gray-200 px-2 py-1 text-xs font-medium text-gray-700 shadow-md opacity-0 transition-opacity duration-200 group-hover:opacity-100 z-50">
+                            Link
+                            <span class="absolute -top-1 left-2 border-4 border-transparent border-b-white"></span>
+                        </span>
+                    </button>
+                    <button id="text-color-btn" class="flex items-center gap-0.5 self-start group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors cursor-pointer">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M6 4l12 0" />
+                            <path d="M12 4l0 16" />
+                        </svg>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-3 opacity-70 mt-0.5">
+                            <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                        </svg>
+
+                        <span class="pointer-events-none absolute top-full mt-2 left-0 whitespace-nowrap rounded-lg bg-white border border-gray-200 px-2 py-1 text-xs font-medium text-gray-700 shadow-md opacity-0 transition-opacity duration-200 group-hover:opacity-100 z-50">
+                            Text Color
+                            <span class="absolute -top-1 left-2 border-4 border-transparent border-b-white"></span>
+                        </span>
+
+                    </button>
+
+                    <button id="highlight-color-btn" class="flex items-center gap-0.5 self-start group relative p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors cursor-pointer">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-highlighter-icon lucide-highlighter">
+                            <path d="m9 11-6 6v3h9l3-3"/>
+                            <path d="m22 12-4.6 4.6a2 2 0 0 1-2.8 0l-5.2-5.2a2 2 0 0 1 0-2.8L14 4"/>
+                        </svg>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-3 opacity-70 mt-0.5">
+                            <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                        </svg>
+
+                        <span class="pointer-events-none absolute top-full mt-2 left-0 whitespace-nowrap rounded-lg bg-white border border-gray-200 px-2 py-1 text-xs font-medium text-gray-700 shadow-md opacity-0 transition-opacity duration-200 group-hover:opacity-100 z-50">
+                            Highlight Color
+                            <span class="absolute -top-1 left-2 border-4 border-transparent border-b-white"></span>
+                        </span>
+
+                    </button>
+
                 </div>
             </div>
 
